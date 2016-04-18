@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html data-ng-app="app">
+  <head>
+    <meta charset="utf-8">
+    <title>github view</title>
+  </head>
+  <body data-ng-controller="MainController as mainCtrl" data-ng-init="mainCtrl.initialize()">
+    <!-- {{1 + 1}} -->
+    
+    <section data-ng-controller="UserController as userCtrl">
+      
+      
+      <img data-ng-src="{{mainCtrl.userData.avatar_url}}"/>
+      <h1 data-ng-bind="mainCtrl.userData.name"></h1>
+      <h3 data-ng-bind="mainCtrl.userData.login"></h3>  
+      
+      <section>
+        <h3>Followed by:</h3>
+        <div data-ng-repeat="follower in mainCtrl.followers">
+          <a href="{{follower.html_url}}"><h5 data-ng-bind="follower.login"></h5></a>
+        </div>
+      </section>
+      
+      
+      
+      <section>
+        <h3>Following:</h3>
+        <div data-ng-repeat="followed in mainCtrl.following">
+          <a href="{{followed.html_url}}"><h5 data-ng-bind="followed.login"></h5></a>
+        </div>
+      </section>
+      
+      
+
+      <section >
+        <h3>Repositories:</h3>
+        <div data-ng-repeat="repo in mainCtrl.repos">
+          <a href="{{repo.html_url}}"><h5 data-ng-bind="repo.name"></h5></a>
+          <!-- <button data-ng-click="mainCtrl.onRepoClick($index)"></button> -->
+        </div>
+      </section>
+      
+      
+      
+      <section >
+        <h3>Starred Repositories</h3>
+        <div data-ng-repeat="repo in mainCtrl.starred">
+          <a href="{{repo.html_url}}"><h5 data-ng-bind="repo.name"></h5></a>
+          <p>
+            Owned by: <a href="{{repo.owner.html_url}}"><span data-ng-bind="repo.owner.login"></span></a>
+          </p>
+        </div>
+      </section>
+      
+    </section>
+    
+    
+    <!-- <user-view data-ng-show="mainCtrl.section === 'user' "></user-view> -->
+    
+    <!-- <repo-view data-ng-show="mainCtrl.section === 'repo' "></repo-view> -->
+    
+    
+    <script type="text/javascript" src="bundle.js"></script>
+  </body>
+</html>
